@@ -1,0 +1,22 @@
+{
+  "name": "What-the-Bing-Image-Service",
+  "version": "1.0.0",
+  "description": "Image service for the What the Bing game",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/app.js",
+    "devl": "nodemon ./src/app.js -e js,css,handlebars"
+  },
+  "author": "Ed Wied",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cors": "^2.8.5",
+    "dotenv": "^14.2.0",
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
