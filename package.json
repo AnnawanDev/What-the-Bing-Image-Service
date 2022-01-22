@@ -1,7 +1,7 @@
 {
   "name": "What-the-Bing-Image-Service",
   "version": "1.0.0",
-  "description": "Image service for the What the Bing game",
+  "description": "Image service for the What the Bing?! game",
   "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
