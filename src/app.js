@@ -14,6 +14,8 @@ require('dotenv').config();
 // set-up Express --------------------------------------------------------------
 const app = express();
 const port = 4000;
+
+//add Access-Control-Allow-Origin header so that API call is not blocked by CORS
 app.use(cors({
     origin: '*'
 }));
