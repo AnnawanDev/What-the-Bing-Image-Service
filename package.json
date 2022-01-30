@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./src/app.js",
-    "devl": "nodemon ./src/app.js -e js,css,handlebars"
+    "devl": "nodemon ./src/app.js -e js,css,handlebars",
+    "startProd": "./node_modules/forever/bin/forever start src/app.js",
+    "stopProd": "./node_modules/forever/bin/forever stop src/app.js"
   },
   "author": "Ed Wied",
   "license": "ISC",
@@ -14,7 +16,8 @@
     "axios": "^0.24.0",
     "cors": "^2.8.5",
     "dotenv": "^14.2.0",
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "forever": "^4.0.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
