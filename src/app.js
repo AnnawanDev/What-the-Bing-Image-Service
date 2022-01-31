@@ -11,11 +11,11 @@ const axios = require('axios');
 let cors = require('cors');
 require('dotenv').config();
 const { logIt, isANumber, isProperStringLength, isNumberOutsideValidRange } = require('./utilities/helperFunctions.js');
-const { BING_SEARCH_API, MAX_NUMBER_IMAGES } = require('./utilities/config.js');
+const { BING_SEARCH_API, MAX_NUMBER_IMAGES, RUNNING_LOCAL, LOCAL_PORT, OSU_PORT } = require('./utilities/config.js');
 
 // set-up Express --------------------------------------------------------------
 const app = express();
-const port = 4000;
+const port = RUNNING_LOCAL ? LOCAL_PORT : OSU_PORT;
 
 //add Access-Control-Allow-Origin header so that API call is not blocked by CORS
 app.use(cors({

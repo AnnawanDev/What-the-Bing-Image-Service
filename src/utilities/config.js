@@ -9,7 +9,9 @@
 
 module.exports = Object.freeze({
     ENABLE_LOGGING: false,
-    RUNNING_LOCAL: true,
+    RUNNING_LOCAL: false,
     BING_SEARCH_API: 'https://api.bing.microsoft.com/v7.0/images/search/?q=',
-    MAX_NUMBER_IMAGES: 15
+    MAX_NUMBER_IMAGES: 15,
+    LOCAL_PORT: 4000,
+    OSU_PORT: 12789
 });
