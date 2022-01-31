@@ -10,6 +10,8 @@ const express = require('express');
 const axios = require('axios');
 let cors = require('cors');
 require('dotenv').config();
+const { logIt, isANumber, isProperStringLength, isNumberOutsideValidRange } = require('./utilities/helperFunctions.js');
+const { BING_SEARCH_API, MAX_NUMBER_IMAGES } = require('./utilities/config.js');
 
 // set-up Express --------------------------------------------------------------
 const app = express();
@@ -22,37 +24,64 @@ app.use(cors({
 
 //set up endpoints
 app.get('/', (req, res) => {
-  res.status(200).send("What the Bing?!");
+  res.status(200).send("Team Raccoon Image Service");
 });
 
-app.get('/images/:searchTerm', (req, res) => {
+
+app.get('/images/:searchTerm/:numberOfImages', (req, res) => {
   let searchTerm = req.params.searchTerm;
-  let bingURL = "https://api.bing.microsoft.com/v7.0/images/search/?q=" + searchTerm + "&count=9&safeSearch=strict";
-  axios.get(bingURL, {
-    headers: { 'Ocp-Apim-Subscription-Key' : process.env.BING_IMAGE_API_KEY }
-  })
-  .then(function (response) {
-    // handle success
-    //console.log(response);
-    let context = {};
-    context.imagePath0 = response.data.value[0].contentUrl;
-    context.imagePath1 = response.data.value[1].contentUrl;
-    context.imagePath2 = response.data.value[2].contentUrl;
-    context.imagePath3 = response.data.value[3].contentUrl;
-    context.imagePath4 = response.data.value[4].contentUrl;
-    context.imagePath5 = response.data.value[5].contentUrl;
-    context.imagePath6 = response.data.value[6].contentUrl;
-    context.imagePath7 = response.data.value[7].contentUrl;
-    context.imagePath8 = response.data.value[8].contentUrl;
-    res.status(200).send(context);
-  })
-  .catch(function (error) {
-    // handle error
-    console.log("ERROR: " + error);
-    res.status(500).send(error);
-  })
+  let numberOfImages = req.params.numberOfImages;
+  let goodUserInput = true;
+  let errorCode = 0;
+  let errorMessage = "";
+
+  //validate user input
+  if (!isANumber(numberOfImages)) {
+    errorCode = 400;
+    errorMessage = "Bad input - you did not send a valid number";
+    goodUserInput = false;
+  }
+
+  if (!isProperStringLength(searchTerm)) {
+    errorCode = 400;
+    errorMessage = "Bad input - search term should be greater than 2 characters";
+    goodUserInput = false;
+  }
+
+  if (isNumberOutsideValidRange(numberOfImages)) {
+    errorCode = 400;
+    errorMessage = "Bad input - number of images should be at least 1 and less than " + (MAX_NUMBER_IMAGES + 1);
+    goodUserInput = false;
+  }
+
+  //send back bad response if needed
+  if (!goodUserInput) {
+    res.status(errorCode).send(errorMessage);
+  } else {
+    //everything is good
+    let bingURL = BING_SEARCH_API + searchTerm + "&count=" + numberOfImages + "&safeSearch=strict";
+
+    axios.get(bingURL, {
+      headers: { 'Ocp-Apim-Subscription-Key' : process.env.BING_IMAGE_API_KEY }
+    })
+    .then(function (response) {
+      let context = {};
+
+      for (let i=0; i < numberOfImages; i++) {
+        context["imagePath" + i] = response.data.value[i].contentUrl;
+      }
+
+      res.status(200).send(context);
+    })
+    .catch(function (error) {
+      logIt("ERROR calling /images/:searchTerm/:numberOfImages: " + error);
+      res.status(500).send(error);
+    })
+  }
 });
 
+
+//return 404 on anything else not found
 app.get('*', (req, res) => {
   res.status(404).send("Hmmmm.... couldn't find that");
 });
@@ -60,5 +89,5 @@ app.get('*', (req, res) => {
 
 // start-up Express  -----------------------------------------
 app.listen(port, () => {
-  console.log("What the Bing?! Image Service has started on port " + port);
+  logIt("Team Raccoon Image Service has started on port " + port);
 });
