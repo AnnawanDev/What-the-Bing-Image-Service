@@ -39,7 +39,7 @@ npm ci
 
 ### Example URL call
 ```
-localhost:4000/images/chess/1
+localhost:4000/images/chess/5
 ```
 
 ### Example return
