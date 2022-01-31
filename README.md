@@ -17,6 +17,15 @@ Install NPM dependencies with,
 npm ci
 ```
 
+### Config file
+In `src/utilities/config.js` there is a configuration file for running the project
+* `ENABLE_LOGGING` - if set to true, will output console.log to console
+* `RUNNING_LOCAL` - used to set environment setup based on whether running local or not
+* `BING_SEARCH_API` - API endpoint for Bing Image Search
+* `MAX_NUMBER_IMAGES` - max number of images Bing Search API should retrieve
+* `LOCAL_PORT` - port number when running locally
+* `OSU_PORT` - port number when running at OSU
+
 
 ## How to run
 ### Local
@@ -24,7 +33,7 @@ npm ci
 * Build and Run in Debug (nodemon): `npm run dev`
 
 ### Production
-* Build and Run with Forever: `npm run prod`
+* Build and Run with Forever: `npm run startProd`
 * Stop Forever Production Run: `npm run stopProd`
 
 
