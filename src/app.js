@@ -11,7 +11,7 @@ const axios = require('axios');
 let cors = require('cors');
 require('dotenv').config();
 const { logIt, isANumber, isProperStringLength, isNumberOutsideValidRange } = require('./utilities/helperFunctions.js');
-const { BING_SEARCH_API, MAX_NUMBER_IMAGES, RUNNING_LOCAL, LOCAL_PORT, OSU_PORT } = require('./utilities/config.js');
+const { SEND_BACK_FAKE_DATA, BING_SEARCH_API, MAX_NUMBER_IMAGES, RUNNING_LOCAL, LOCAL_PORT, OSU_PORT } = require('./utilities/config.js');
 
 // set-up Express --------------------------------------------------------------
 const app = express();
@@ -57,8 +57,12 @@ app.get('/images/:searchTerm/:numberOfImages', (req, res) => {
   //send back bad response if needed
   if (!goodUserInput) {
     res.status(errorCode).send(errorMessage);
+  } else if(SEND_BACK_FAKE_DATA) {
+    //send back test data rather than make call to Bing
+    let fakeData = { imagePath0: 'http://localhost:3000/images/home-loading/image0.jpg',imagePath1: 'http://localhost:3000/images/home-loading/image1.jpg', imagePath2: 'http://localhost:3000/images/home-loading/image2.jpg', imagePath3: 'http://localhost:3000/images/home-loading/image3.jpg', imagePath4: 'http://localhost:3000/images/home-loading/image4.jpg', imagePath5: 'http://localhost:3000/images/home-loading/image5.jpg', imagePath6: 'http://localhost:3000/images/home-loading/image6.jpg', imagePath7: 'http://localhost:3000/images/home-loading/image7.jpg'};
+    res.status(200).send(fakeData);
   } else {
-    //everything is good
+    //everything is good - send back real data
     let bingURL = BING_SEARCH_API + searchTerm + "&count=" + numberOfImages + "&safeSearch=strict";
 
     axios.get(bingURL, {

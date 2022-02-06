@@ -13,5 +13,6 @@ module.exports = Object.freeze({
     BING_SEARCH_API: 'https://api.bing.microsoft.com/v7.0/images/search/?q=',
     MAX_NUMBER_IMAGES: 15,
     LOCAL_PORT: 4000,
-    OSU_PORT: 12789
+    OSU_PORT: 12789,
+    SEND_BACK_FAKE_DATA: true
 });
