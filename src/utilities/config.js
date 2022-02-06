@@ -14,5 +14,5 @@ module.exports = Object.freeze({
     MAX_NUMBER_IMAGES: 15,
     LOCAL_PORT: 4000,
     OSU_PORT: 12789,
-    SEND_BACK_FAKE_DATA: true
+    SEND_BACK_FAKE_DATA: false
 });
