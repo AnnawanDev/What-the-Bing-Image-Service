@@ -4,11 +4,14 @@
   "description": "Image service for the What the Bing?! game",
   "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node ./src/app.js",
     "devl": "nodemon ./src/app.js -e js,css,handlebars",
     "startProd": "./node_modules/forever/bin/forever start src/app.js",
     "stopProd": "./node_modules/forever/bin/forever stop src/app.js"
+  },
+  "jest":{
+      "testEnvironment": "node"
   },
   "author": "Ed Wied",
   "license": "ISC",
@@ -20,6 +23,7 @@
     "forever": "^4.0.3"
   },
   "devDependencies": {
+    "jest": "^27.5.1",
     "nodemon": "^2.0.15"
   }
 }
