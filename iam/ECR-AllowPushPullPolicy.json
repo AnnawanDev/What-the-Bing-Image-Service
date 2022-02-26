@@ -21,7 +21,7 @@
                 "ecr:UploadLayerPart"
             ],
             "Resource": [
-                "arn:aws:ecr:us-east-1:155114478715:repository/what-the-bing-image-service"
+                "arn:aws:ecr:us-east-1:155114478715:repository/what-the-bing"
             ]
         }
     ]
