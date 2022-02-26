@@ -32,7 +32,7 @@ In `src/utilities/config.js` there is a configuration file for running the proje
 * Build and Run: `npm run start`
 * Build and Run in Debug (nodemon): `npm run dev`
 
-### Production @ OSU 
+### Production @ OSU
 * Build and Run with Forever: `npm run startProd`
 * Stop Forever Production Run: `npm run stopProd`
 

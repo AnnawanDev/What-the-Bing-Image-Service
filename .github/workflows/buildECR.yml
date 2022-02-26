@@ -1,0 +1,40 @@
+# Ed Wied
+# Feb 26, 2022
+# CS 361 - Final Project
+# What the Bing?! Image Service
+# ECR publishing adapted from YouTube tutorial:
+#        Build a Docker Image and Publish It to AWS ECR using Github Actions
+#        https://www.youtube.com/watch?v=Hv5UcBYseus
+#        2-26-22
+
+
+name: Build and push What the Bing Image Service to ECR
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-push:
+    name: Build and Push to ECR
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Login to Amazon ECR
+      id: login-to-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build, tag, push image to ECR
+      id: what-the-bing-image-service-image
+      env:
+        ECR_REGISTRY: ${{ steps.login-to-ecr.outputs.registry }}
+        ECR_REPOSITORY: what-the-bing
+        IMAGE_TAG: latest
+      run: |
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
