@@ -9,9 +9,15 @@
 
 
 name: Build and push What the Bing Image Service to ECR
+
+# run workflow on PR merge to main
+# on:
+#   push:
+#     branches: [main]
+
+# run workflow only on manual trigger
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
 
 jobs:
   build-and-push:

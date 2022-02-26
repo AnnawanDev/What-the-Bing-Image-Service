@@ -66,3 +66,10 @@ localhost:4000/images/chess/5
 ## Bing Image API
 * Bing Image API found at https://www.microsoft.com/en-us/bing/apis/bing-image-search-api
 * Bing Image API v7 documentation found at https://docs.microsoft.com/en-us/rest/api/cognitiveservices-bingsearch/bing-images-api-v7-reference
+
+
+## GitHub Actions
+* Push to ECR adapted from tutorial by Anton Putra
+  * Youtube:
+  * GitHub source: https://github.com/antonputra/tutorials/tree/main/lessons/086
+  * Future todo to implement: Automatic tagging of releases, https://github.com/antonputra/tutorials/tree/main/lessons/086#add-automatic-tagging-of-releases
