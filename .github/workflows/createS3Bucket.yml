@@ -19,13 +19,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: insert ecr path into json configuration
-      uses: microsoft/variable-substitution@v1
-      with:
-        files: './aws/Dockerrun.aws.json'
-        env:
-          Image: "Hello there"
-
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
