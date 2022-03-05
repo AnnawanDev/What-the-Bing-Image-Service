@@ -27,10 +27,13 @@ jobs:
         aws-region: us-east-1
         AWS_DEFAULT_REGION: us-east-1
 
-    - name: Copy file
+    - name: Delete existing file
       run: |
-        ls -hal
-        aws s3 cp ./Dockerrun.aws.json s3://annawandev/what-the-bing/image-service/Dockerrun.aws.json
+        aws s3 rm s3://annawandev/what-the-bing/image-service/Dockerrun.aws.json
+
+    - name: Copy new version of configuration file
+      run: |
+        aws s3 cp ./aws/Dockerrun.aws.json s3://annawandev/what-the-bing/image-service/Dockerrun.aws.json
 
 
 
