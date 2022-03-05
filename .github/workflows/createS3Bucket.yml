@@ -24,7 +24,7 @@ jobs:
       with:
         files: './aws/Dockerrun.aws.json'
         env:
-          Image: {"Name":${{ secrets.AWS_ECR_PATH }}}
+          Image: "Hello there"
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
