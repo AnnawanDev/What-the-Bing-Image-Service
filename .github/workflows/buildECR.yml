@@ -13,7 +13,6 @@ name: Build and push What the Bing Image Service to ECR
 # run workflow only on manual trigger because I'm not wanting to constantly push a new image to AWS ECR
 on:
   workflow_dispatch:
-  push:
 
 jobs:
   build-and-push:
