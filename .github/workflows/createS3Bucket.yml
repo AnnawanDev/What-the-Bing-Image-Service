@@ -8,6 +8,7 @@ name: Copy Elastic Beanstalk configuration file to s3
 
 # run workflow only on manual trigger
 on:
+  push:
   workflow_dispatch:
 
 jobs:
@@ -24,7 +25,7 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
       run: |
-        aws s3 cp ../../../aws/Dockerrun.aws.json s3://annawandev/what-the-bing/image-service/Dockerrun.aws.json
+        aws s3 cp Dockerrun.aws.json s3://annawandev/what-the-bing/image-service/Dockerrun.aws.json
 
 
 
