@@ -4,7 +4,7 @@
 # What the Bing?! Image Service
 
 
-name: Build and push What the Bing Image Service to Elastic Beanstalk
+name: Copy Elastic Beanstalk configuration file to s3
 
 # run workflow only on manual trigger
 on:
