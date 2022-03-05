@@ -13,7 +13,7 @@ on:
 
 jobs:
   build-and-push:
-    name: Copy to s3
+    name: Copy configuration file to s3
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -26,6 +26,13 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
+    - name: insert account number into dockerrun json
+    - uses: microsoft/variable-substitution@v1
+      with:
+        files: 'Dockerrun.aws.json'
+        env:
+          Name: ${{ secrets.PASSWORD }}
+
     - name: Delete existing file
       run: |
         aws s3 rm s3://annawandev/what-the-bing/image-service/Dockerrun.aws.json
@@ -33,12 +40,3 @@ jobs:
     - name: Copy new version of configuration file
       run: |
         aws s3 cp ./aws/Dockerrun.aws.json s3://annawandev/what-the-bing/image-service/Dockerrun.aws.json
-
-
-
-      # - uses: actions/checkout@v2
-      # - uses: microsoft/variable-substitution@v1
-      #   with:
-      #     files: 'Dockerrun.aws.json'
-      #     env:
-      #       Name: ${{ secrets.PASSWORD }}
