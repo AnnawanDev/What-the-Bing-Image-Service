@@ -12,7 +12,7 @@ on:
 
 jobs:
   build-and-push:
-    name: Copy Elastic Beanstalk configuration file to s3
+    name: Copy to s3
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -24,7 +24,7 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
       run: |
-        aws s3 cp ../../../aws/Dockerrun.aws.json s3://annawandev/what-the-bing/image-service/Dockerrun.aws.json
+        aws s3 cp /aws/Dockerrun.aws.json s3://annawandev/what-the-bing/image-service/Dockerrun.aws.json
 
 
 
