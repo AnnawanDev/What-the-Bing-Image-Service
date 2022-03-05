@@ -17,12 +17,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
-      uses: microsoft/variable-substitution@v1
+    - uses: actions/checkout@v2
+
+    - uses: microsoft/variable-substitution@v1
       with:
-          files: './aws/Dockerrun.aws.json'
-          env:
-            Image.Name: ${{ secrets.PASSWORD }}
+        files: './aws/Dockerrun.aws.json'
+        env:
+          Image.Name: ${{ secrets.PASSWORD }}
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
