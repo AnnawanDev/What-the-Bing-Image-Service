@@ -17,7 +17,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - uses: microsoft/variable-substitution@v1
+        with:
+          files: 'Dockerrun.aws.json'
+          env:
+            Name: ${{ secrets.PASSWORD }}
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -25,13 +30,6 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
-
-    - name: insert account number into dockerrun json
-    - uses: microsoft/variable-substitution@v1
-      with:
-        files: 'Dockerrun.aws.json'
-        env:
-          Name: ${{ secrets.PASSWORD }}
 
     - name: Delete existing file
       run: |
