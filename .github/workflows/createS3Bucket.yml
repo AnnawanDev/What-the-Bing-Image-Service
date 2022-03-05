@@ -26,8 +26,7 @@ jobs:
         aws-region: us-east-1
       run: |
         ls -hal
-        pwd
-        aws s3 cp ./.github/workflows/Dockerrun.aws.json s3://annawandev/what-the-bing/image-service/Dockerrun.aws.json
+        aws s3 cp ./Dockerrun.aws.json s3://annawandev/what-the-bing/image-service/Dockerrun.aws.json
 
 
 
