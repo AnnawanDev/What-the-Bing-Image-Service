@@ -8,7 +8,6 @@ name: Start Elastic Beanstalk service
 
 # run workflow only on manual trigger
 on:
-  push:
   workflow_dispatch:
 
 jobs:
@@ -21,10 +20,7 @@ jobs:
 
     - name: Create EB application version
       env:
-        APP_VERSION = 1
-        S3_BUCKET_CONFIG = ${{ secrets.S3_EB_BUCKET }}
+        APP_VERSION: 1
+        S3_BUCKET_CONFIG: ${{ secrets.S3_EB_BUCKET }}
       run: |
         aws elasticbeanstalk create-application-version --application-name "What the Bing Image Service" --version-label $APP_VERSION --source-bundle S3Bucket=$S3_EB_BUCKET,S3Key=Dockerrun.aws.json
-
-
-      
