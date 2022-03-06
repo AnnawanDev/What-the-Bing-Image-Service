@@ -2,7 +2,7 @@
 This is part of my final project for CS361.  It's an image service that supports my
 "What the Bing?!" game by supplying an endpoint to query the Bing Image API.  It's also used
 to power two of my teammate micro-service projects.  This micro-service is used in
-conjunction with the What the Bing UI service and the What the Bing Noun Importer Service.
+conjunction with the [What the Bing UI service](https://github.com/AnnawanDev/What-the-Bing-UI-service) and the What the Bing Noun Importer Service.
 
 
 ## Set-up
@@ -69,3 +69,13 @@ localhost:4000/images/chess/5
 ## Bing Image API
 * Bing Image API found at https://www.microsoft.com/en-us/bing/apis/bing-image-search-api
 * Bing Image API v7 documentation found at https://docs.microsoft.com/en-us/rest/api/cognitiveservices-bingsearch/bing-images-api-v7-reference
+
+
+## Sequence Diagram - How a game is started
+![How a game is started](./How-a-game-is-started.png)
+
+
+## What the Bing?! Microservices
+* [UI Service](https://github.com/AnnawanDev/What-the-Bing-UI-service)
+* [Image Service](https://github.com/AnnawanDev/What-the-Bing-Image-Service)
+* [Noun Service](https://github.com/AnnawanDev/What-the-Bing-noun-importer-service)
