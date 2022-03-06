@@ -22,6 +22,9 @@ jobs:
     - name: install more-utils
       run: sudo apt-get install moreutils
 
+    # injecting ECR path to hide account number in json
+    # adapted based on answer from https://stackoverflow.com/questions/64482190/edit-the-value-inside-the-json-array-with-github-actions
+    # March 6, 2022
     - name: update JSON config with path to ECR
       run: echo "`jq '.Image.Name="${{ secrets.AWS_ECR_PATH }}"' ./aws/Dockerrun.aws.json`" > ./aws/Dockerrun.aws.json
 
