@@ -20,7 +20,9 @@ jobs:
       uses: actions/checkout@v2
 
     - name: update config
-      run: echo `jq '.Image[0].Name="`${{secrets.AWS_ECR_PATH}}`"' Dockerrun.aws.json` > Dockerrun.aws.json
+      env:
+        ecrValue: `${{ secrets.AWS_ECR_PATH}}`
+      run: echo `jq '.Image[0].Name=$ecrValue' Dockerrun.aws.json` > Dockerrun.aws.json
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
