@@ -26,7 +26,7 @@ jobs:
       env:
         ecrValue: ${{ secrets.AWS_ECR_PATH}}
       #run: jq --arg id "$ecrValue" '.Image.Name="$ecrValue"' ./aws/Dockerrun.aws.json > ./aws/Dockerrun.aws.json
-      run: echo "`jq --arg ecrValue $ecrValue '.Image.Name="$ecrValue"' ./aws/Dockerrun.aws.json`" > ./aws/Dockerrun.aws.json
+      run: echo "`jq --arg ecrValue ${{ secrets.AWS_ECR_PATH}} '.Image.Name="$ecrValue"' ./aws/Dockerrun.aws.json`" > ./aws/Dockerrun.aws.json
      #run: echo "`jq '.sampleArray[0].id="5"' config.json`" > config.json
 
     - name: Configure AWS credentials
