@@ -19,10 +19,13 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: install more-utils
+        run: sudo apt-get install moreutils
+
     - name: update config
       env:
         ecrValue: ${{ secrets.AWS_ECR_PATH}}
-      run: echo `jq '.Image[0].Name=$ecrValue' Dockerrun.aws.json` > Dockerrun.aws.json
+      run: jq --arg ecrValue "$ecrValue" '.Image[0].Name=$ecrValue' Dockerrun.aws.json > Dockerrun.aws.json
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
