@@ -22,11 +22,11 @@ jobs:
     - name: install more-utils
       run: sudo apt-get install moreutils
 
-    - name: update config
+    - name: update JSON config with path to ECR
       env:
         ecrValue: ${{ secrets.AWS_ECR_PATH}}
       #run: jq --arg id "$ecrValue" '.Image.Name="$ecrValue"' ./aws/Dockerrun.aws.json > ./aws/Dockerrun.aws.json
-      run: echo "`jq --arg id "$ecrValue" '.Image.Name="$ecrValue"' ./aws/Dockerrun.aws.json`" > ./aws/Dockerrun.aws.json
+      run: echo "`jq --arg ecrValue "$ecrValue" '.Image.Name="$ecrValue"' ./aws/Dockerrun.aws.json`" > ./aws/Dockerrun.aws.json
      #run: echo "`jq '.sampleArray[0].id="5"' config.json`" > config.json
 
     - name: Configure AWS credentials
