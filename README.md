@@ -1,5 +1,8 @@
-# Team Raccoon Image Service
-This is an image service that queries the Bing Image API.
+# What the Bing Image Service
+This is part of my final project for CS361.  It's an image service that supports my
+"What the Bing?!" game by supplying an endpoint to query the Bing Image API.  It's also used
+to power two of my teammate micro-service projects.  This micro-service is used in
+conjunction with the What the Bing UI service and the What the Bing Noun Importer Service.
 
 
 ## Set-up

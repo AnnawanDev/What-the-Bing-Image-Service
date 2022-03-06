@@ -51,7 +51,7 @@ app.get('*', (req, res) => {
 
 // start-up Express  -----------------------------------------------------------
 app.listen(port, () => {
-  logIt("Team Raccoon Image Service has started on port " + port);
+  logIt("What the Bing?! Image Service has started on port " + port);
 });
 
 
