@@ -25,7 +25,7 @@ jobs:
     - name: update config
       env:
         ecrValue: ${{ secrets.AWS_ECR_PATH}}
-      run: echo "`jq '.Image.Name="5"' Dockerrun.aws.json`" > Dockerrun.aws.json
+      run: echo "`jq '.Image.Name="$ecrValue"' Dockerrun.aws.json`" > Dockerrun.aws.json
       #run: jq 'Image.Name="5"' Dockerrun.aws.json > Dockerrun.aws.json
 
     - name: Configure AWS credentials
