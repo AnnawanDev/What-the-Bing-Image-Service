@@ -19,6 +19,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: update config
+      run: `jq '.Image[0].Name="`${{secrets.AWS_ECR_PATH}}`"' Dockerrun.aws.json` > Dockerrun.aws.json
+
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
