@@ -4,6 +4,7 @@
   CS 361 Final Project - What the Bing?!
 */
 
+const { ValidateObject } = require('./ValidateObject.js');
 const { ENABLE_LOGGING, MAX_NUMBER_IMAGES } = require('./config.js');
 
 //common function to log messages to console rather than use console.log for everyone
@@ -36,9 +37,28 @@ function isNumberOutsideValidRange(someNumber) {
   }
 }
 
+function validateImageSearchInput(numberOfImages, searchTerm) {
+  let validateObject = new ValidateObject();
+
+  if (!isANumber(numberOfImages)) {
+    validateObject.setError(400, "Bad input - you did not send a valid number");
+  }
+
+  if (!isProperStringLength(searchTerm)) {
+    validateObject.setError(400, "Bad input - search term should be greater than 2 characters");
+  }
+
+  if (isNumberOutsideValidRange(numberOfImages)) {
+    validateObject.setError(400, "Bad input - number of images should be at least 1 and less than " + (MAX_NUMBER_IMAGES + 1));
+  }
+
+  return validateObject;
+}
+
 module.exports = {
   logIt,
   isANumber,
   isProperStringLength,
-  isNumberOutsideValidRange
+  isNumberOutsideValidRange,
+  validateImageSearchInput
 }
